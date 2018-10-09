@@ -1,4 +1,4 @@
-## <center>《深入浅出 React 和 Redux》代码实现 </center>      
+## <p align="center">《深入浅出 React 和 Redux》代码实现 </p>      
 
 ### 初始化项目
 ```
