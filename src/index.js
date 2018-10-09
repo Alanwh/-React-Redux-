@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+// import App from './lesson1/App';
+import Panel from './lesson2/Panel';
 import './index.css';
 
 ReactDOM.render(
-    <App />,
+    <Panel />,
     document.getElementById('root')
 )
