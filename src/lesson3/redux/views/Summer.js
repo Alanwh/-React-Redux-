@@ -1,7 +1,15 @@
 import React, { Component } from 'react';
 import store from './../store';
 
-class Summer extends Component {
+function Summer({sum}) {
+    return(
+        <div>
+            total : {sum}
+        </div>
+    )
+}
+
+class SummerContainer extends Component {
 
     constructor(props) {
         super(props);
@@ -32,11 +40,9 @@ class Summer extends Component {
 
     render() {
         return(
-            <div>
-                total : {this.state.sum}
-            </div>
+            <Summer sum={this.state.sum} />
         )
     }
 }
 
-export default Summer;
+export default SummerContainer;

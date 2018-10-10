@@ -3,7 +3,17 @@ import PropTypes from 'prop-types';
 import * as actions from '../Actions';
 import store from './../store';
 
-class Counter extends Component {
+function Counter({handleAdd, handleDel, info, count}) {
+    return(
+        <div>
+            <button onClick={handleAdd}>+</button>
+            <button onClick={handleDel}>-</button>
+            {info} counter {count}
+        </div>
+    )
+}
+
+class CounterContainer extends Component {
 
     constructor(props) {
         super(props);
@@ -42,21 +52,22 @@ class Counter extends Component {
 
     render() {
         return(
-            <div>
-                <button onClick={this.handleAdd}>+</button>
-                <button onClick={this.handleDel}>-</button>
-                {this.props.info} counter {this.state.count}
-            </div>
+            <Counter 
+                handleAdd={this.handleAdd}
+                handleDel={this.handleDel}
+                info={this.props.info}
+                count={this.state.count}
+            />
         )
     }
 }
 
-Counter.defaultProps = {
+CounterContainer.defaultProps = {
     count: 0
 }
 
-Counter.propTypes = {
+CounterContainer.propTypes = {
     info: PropTypes.string.isRequired
 }
 
-export default Counter;
+export default CounterContainer;
