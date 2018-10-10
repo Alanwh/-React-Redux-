@@ -19,7 +19,9 @@ const mapState = (state) => {
     for(var key in state) {
         sum += state[key]
     }
-    return {sum: sum}
+    return{
+        sum: sum
+    }
 }
 
 export default connect(mapState)(Summer);

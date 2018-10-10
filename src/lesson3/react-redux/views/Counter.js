@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect }  from 'react-redux';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import * as actions from '../Actions';
 
@@ -14,9 +14,9 @@ function Counter({handleAdd, handleDel, info, count}) {
 }
 
 Counter.propTypes = {
-    handleAdd: PropTypes.func,
-    handleDel: PropTypes.func,
-    info: PropTypes.string,
+    handleAdd: PropTypes.func, 
+    handleDel: PropTypes.func, 
+    info: PropTypes.string, 
     count: PropTypes.number
 }
 
@@ -28,10 +28,10 @@ const mapState = (state, ownProps) => {
 
 const mapDispatch = (dispatch, ownProps) => {
     return {
-        handleAdd: () => {
+        handleAdd() {
             dispatch(actions.add(ownProps.info));
         },
-        handleDel: () => {
+        handleDel() {
             dispatch(actions.del(ownProps.info));
         }
     }
