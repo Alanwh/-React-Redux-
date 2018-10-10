@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import * as actions from '../Actions';
-import store from './../store';
 
 function Counter({handleAdd, handleDel, info, count}) {
     return(
@@ -15,34 +14,34 @@ function Counter({handleAdd, handleDel, info, count}) {
 
 class CounterContainer extends Component {
 
-    constructor(props) {
-        super(props);
+    constructor(props, context) {
+        super(props, context);
         this.onChange = this.onChange.bind(this);
         this.handleAdd = this.handleAdd.bind(this);
         this.handleDel = this.handleDel.bind(this);
         this.state = {
-            count: store.getState()[this.props.info]
+            count: this.context.store.getState()[this.props.info]
         }
     }
 
     onChange() {
         this.setState({
-            count: store.getState()[this.props.info]
+            count: this.context.store.getState()[this.props.info]
         })
     }
 
     handleAdd() {
         let { info } = this.props;
-        store.dispatch(actions.add(info));
+        this.context.store.dispatch(actions.add(info));
     }
 
     handleDel() {
         let { info } = this.props;
-        store.dispatch(actions.del(info));
+        this.context.store.dispatch(actions.del(info));
     }
 
     componentDidMount() {
-        store.subscribe(this.onChange);
+        this.context.store.subscribe(this.onChange);
     }
 
     shouldComponentUpdate(nextProps, nextState) {
@@ -68,6 +67,10 @@ CounterContainer.defaultProps = {
 
 CounterContainer.propTypes = {
     info: PropTypes.string.isRequired
+}
+
+CounterContainer.contextTypes = {
+    store: PropTypes.object
 }
 
 export default CounterContainer;

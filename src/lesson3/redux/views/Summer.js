@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import store from './../store';
+import PropTypes from 'prop-types';
 
 function Summer({sum}) {
     return(
@@ -11,8 +11,8 @@ function Summer({sum}) {
 
 class SummerContainer extends Component {
 
-    constructor(props) {
-        super(props);
+    constructor(props, context) {
+        super(props, context);
         this.onChange = this.onChange.bind(this);
         this.state = {
             sum: this.sum()
@@ -20,7 +20,7 @@ class SummerContainer extends Component {
     }
 
     sum() {
-        let date = store.getState();
+        let date = this.context.store.getState();
         let sum = 0;
         for(var key in date) {
             sum += date[key]
@@ -35,7 +35,7 @@ class SummerContainer extends Component {
     }
 
     componentDidMount() {
-        store.subscribe(this.onChange);
+        this.context.store.subscribe(this.onChange);
     }
 
     render() {
@@ -43,6 +43,10 @@ class SummerContainer extends Component {
             <Summer sum={this.state.sum} />
         )
     }
+}
+
+SummerContainer.contextTypes = {
+    store: PropTypes.object
 }
 
 export default SummerContainer;
